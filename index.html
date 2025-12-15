@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Focus Stake | Новогодний Цифровой Детокс</title>
+    <style>
+        /* --- Стили для Гирлянды (Новый элемент) --- */
+.garland {
+    position: fixed; /* Фиксируем, чтобы была всегда сверху */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center; /* Центрируем лампочки */
+    align-items: center;
+    overflow: hidden;
+    z-index: 10;
+    background-color: #000000; /* Цвет фона, чтобы гирлянда не сливалась */
+    padding-top: 10px;
+}
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    /* Анимация: эффект пульсации */
+    animation: pulse 1s infinite alternate;
+}
+/* Задаем цвета лампочкам */
+.light:nth-child(3n+1) { background-color: var(--primary-color); } /* Красный */
+.light:nth-child(3n+2) { background-color: var(--secondary-color); } /* Зеленый */
+.light:nth-child(3n+3) { background-color: var(--fail-color); } /* Желтый/Золотой */
+
+/* Анимация пульсации */
+@keyframes pulse {
+    0% { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+        /* CSS Variables for Cozy Wood Theme */
+:root {
+    --primary-color: #b91c1c; /* Глубокий красный (праздничный) */
+    --primary-dark: #991b1b;
+    --secondary-color: #059669; /* Хвойный зеленый */
+    --fail-color: #fcd34d; /* Золото */
+    --wood-color-light: #f5f5dc; /* Бежевый */
+    --wood-color-dark: #b8860b; /* Золотисто-коричневый для досок */
+    --card-background: rgba(255, 255, 255, 0.95); /* Полупрозрачная карточка, чтобы видеть фон */
+    --text-color: #1f2937;
+    --shadow-light: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Более сильная тень для контраста */
+}
+
+        /* Base styles - Фон с Изображением */
+/* Base styles - Фон с Изображением (ЧИСТЫЙ) */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    
+    /* Только ссылка на изображение! */
+    background-image: url('ww.jpg'); 
+        
+    /* Настройки изображения */
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center center; 
+    
+    position: relative;
+}
+/* Удаляем псевдоэлемент елки, если он больше не нужен */
+body::after {
+    /* Эти стили можно удалить, если вы ставите фото вместо эмодзи-елки */
+    content: none; 
+}
+        @keyframes snowfall {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 500px 1000px; }
+        }
+        /* --- Конец декора --- */
+
+        /* Container & Cards (Остаются чистыми) */
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .card {
+    background: var(--card-background); /* rgba(255, 255, 255, 0.95) */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-light); /* Теперь тень сильнее */
+    margin-bottom: 25px;
+}
+
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+            color: var(--primary-color); /* Красный */
+        }
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--background-color);
+            box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        /* Buttons (Красная акцентная кнопка) */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-dark);
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: var(--primary-color); /* Красный */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Progress Bar (Зеленый для успеха) */
+        .progress-bar-container {
+            margin-top: 15px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 15px;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--secondary-color); /* Зеленый */
+            transition: width 0.6s ease-in-out;
+            text-align: right;
+            line-height: 15px;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        /* Status Messages (Золото/Оранжевый для предупреждения) */
+        .status-message {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .status-success {
+            background-color: #d1fae5;
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+        .status-warning {
+            background-color: #fef3c7;
+            color: var(--fail-color); /* Золото/Оранжевый */
+            border: 1px solid var(--fail-color);
+        }
+        
+        /* Hidden elements by default */
+        #active-challenge-card, #proof-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="garland">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+<div class="container">
+    <h1>🎁 Focus Stake: New Year 2026</h1>
+    <p class="subtitle">Идеальный старт года! Закрепите свои новогодние обещания с помощью финансового залога.</p>
+
+    <div class="card" id="new-challenge-card">
+        <h2>🎄 Новогодний Челлендж</h2>
+        <div class="form-group">
+            <label for="challenge-select">Ваша Резолюция/Цель</label>
+            <select id="challenge-select">
+                <option value="30min-social">📱 Не сидеть в соцсетях дольше 30 минут (для продуктивного года)</option>
+                <option value="60min-study">📚 60 минут непрерывного обучения (закладка на будущее)</option>
+                <option value="no-youtube">🚫 Никакого Youtube и Netflix после 22:00</option>
+                <option value="custom">✍️ Свой новогодний челлендж</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="stake-amount">Сумма Залога (Ваш новогодний взнос $)</label>
+            <input type="number" id="stake-amount" value="50" min="10" step="10">
+        </div>
+        
+        <div class="form-group">
+            <label for="duration">Длительность Челленджа (Дни)</label>
+            <input type="number" id="duration" value="14" min="7" max="30"> </div>
+
+        <button class="btn btn-primary" onclick="startChallenge()">Скрепить Обещание и Внести Залог</button>
+    </div>
+    
+    <div class="card" id="active-challenge-card">
+        <h2>🎁 Ваша Новогодняя Цель</h2>
+        <p><strong>Цель:</strong> <span id="active-goal"></span></p>
+        <p><strong>Залог:</strong> <span id="active-stake"></span> $</p>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar-days"></div>
+        </div>
+        <div class="progress-text" id="progress-days-text">День 0 из 14</div>
+
+        <button class="btn btn-primary" id="daily-report-btn" onclick="showProofSection()">Отправить Отчет за Сегодня</button>
+        <div class="status-message status-warning" id="report-reminder">
+            🔔 Последний шанс подтвердить отчет и не потерять новогодний залог!
+        </div>
+    </div>
+
+    <div class="card" id="proof-section">
+        <h2>Подтверждение Отчета (День <span id="current-day">0</span>)</h2>
+        <p>Загрузите снимок экрана (например, "Экранное время"), чтобы доказать выполнение новогодней резолюции.</p>
+
+        <div class="form-group">
+            <label for="proof-file">Выбрать файл (.png/.jpg)</label>
+            <input type="file" id="proof-file" accept="image/*">
+        </div>
+
+        <button class="btn btn-primary" onclick="submitProof()" id="submit-proof-btn">Отправить на Верификацию</button>
+        
+        <div class="status-message status-success" id="status-message" style="display: none;"></div>
+    </div>
+</div>
+
+<script>
+    // (JavaScript код остается таким же, как в предыдущем макете, для сохранения функционала)
+
+    const newChallengeCard = document.getElementById('new-challenge-card');
+    const activeChallengeCard = document.getElementById('active-challenge-card');
+    const proofSection = document.getElementById('proof-section');
+    
+    // Элементы активного челленджа
+    const activeGoal = document.getElementById('active-goal');
+    const activeStake = document.getElementById('active-stake');
+    const progressBar = document.getElementById('progress-bar-days');
+    const progressText = document.getElementById('progress-days-text');
+    const currentDaySpan = document.getElementById('current-day');
+    const statusMessage = document.getElementById('status-message');
+    const submitProofBtn = document.getElementById('submit-proof-btn');
+    
+    let challengeData = null; 
+    let currentDay = 0;
+
+    function startChallenge() {
+        const challengeSelect = document.getElementById('challenge-select');
+        const stakeAmount = document.getElementById('stake-amount').value;
+        const duration = document.getElementById('duration').value;
+
+        if (stakeAmount < 10 || duration < 3) {
+            alert("Залог минимум $10, длительность минимум 3 дня.");
+            return;
+        }
+
+        challengeData = {
+            goal: challengeSelect.options[challengeSelect.selectedIndex].text,
+            stake: stakeAmount,
+            duration: parseInt(duration)
+        };
+        
+        currentDay = 1;
+
+        activeGoal.textContent = challengeData.goal;
+        activeStake.textContent = challengeData.stake;
+        updateProgress();
+
+        newChallengeCard.style.display = 'none';
+        activeChallengeCard.style.display = 'block';
+        
+        alert(`🥳 Новогодний челлендж "${challengeData.goal}" на ${challengeData.duration} дней начат! Залог $${challengeData.stake} внесен.`);
+    }
+
+    function updateProgress() {
+        const progressPercent = Math.min((currentDay / challengeData.duration) * 100, 100);
+        progressBar.style.width = `${progressPercent}%`;
+        progressText.textContent = `День ${currentDay} из ${challengeData.duration}`;
+        
+        if (progressPercent === 100) {
+            progressText.textContent = "Челлендж завершен! С Новым Годом и с чистой совестью!";
+        }
+    }
+
+    function showProofSection() {
+        currentDaySpan.textContent = currentDay;
+        proofSection.style.display = 'block';
+        submitProofBtn.disabled = false;
+        statusMessage.style.display = 'none';
+        document.getElementById('daily-report-btn').disabled = true;
+    }
+
+    function submitProof() {
+    const fileInput = document.getElementById('proof-file');
+        
+        function submitProof() {
+    const fileInput = document.getElementById('proof-file');
+    
+    if (fileInput.files.length === 0) {
+        alert("Пожалуйста, выберите файл для загрузки.");
+        return;
+    }
+    
+    // --- НОВАЯ СЕРВЕРНАЯ ИМИТАЦИЯ ---
+    const isVerifiedByAI = Math.random() > 0.3; // Имитируем, что проверка может провалиться в 30% случаев
+
+    submitProofBtn.disabled = true;
+
+    if (isVerifiedByAI) {
+        // Имитация успешной проверки
+        statusMessage.textContent = '✅ Отчет принят! AI подтвердил скриншот. Завтра будет День ' + (currentDay + 1);
+        statusMessage.classList.remove('status-warning');
+        statusMessage.classList.add('status-success');
+        statusMessage.style.display = 'block';
+        
+        // Имитация перехода на следующий день
+        setTimeout(() => {
+            currentDay++;
+            // ... (остальная логика перехода) ...
+        }, 5000);
+
+    } else {
+        // Имитация провала проверки
+        statusMessage.textContent = '❌ ВЕРИФИКАЦИЯ НЕ ПРОЙДЕНА. AI не смог считать данные или обнаружен подлог. Вы проиграли залог.';
+        statusMessage.classList.remove('status-success');
+        statusMessage.classList.add('status-fail');
+        statusMessage.style.display = 'block';
+
+        document.getElementById('daily-report-btn').disabled = true; // Блокируем дальнейшие попытки
+        alert("Проверка не пройдена. Ваш залог ($" + challengeData.stake + ") уходит в Фонд.");
+    }
+    
+    // ... (Остальной код) ...
+}
+
+        submitProofBtn.disabled = true;
+        statusMessage.textContent = 'Отчет отправлен. Проверка займет до 2 часов. Завтра будет День ' + (currentDay + 1);
+        statusMessage.classList.remove('status-warning');
+        statusMessage.classList.add('status-success');
+        statusMessage.style.display = 'block';
+        
+        // Имитация перехода на следующий день
+        setTimeout(() => {
+            currentDay++;
+            if (currentDay <= challengeData.duration) {
+                updateProgress();
+                proofSection.style.display = 'none';
+                document.getElementById('daily-report-btn').disabled = false; 
+                document.getElementById('report-reminder').style.display = 'block';
+            } else {
+                activeChallengeCard.innerHTML = `<h2>🥳 УРА, ПОБЕДА!</h2><p>Вы завершили ${challengeData.duration} дней и сохранили $${challengeData.stake}. Отличное начало года!</p>`;
+                proofSection.style.display = 'none';
+            }
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>
